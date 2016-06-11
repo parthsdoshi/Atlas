@@ -1,0 +1,89 @@
+<html>
+
+  <head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
+    <link type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script>
+      var config = {
+        apiKey: "AIzaSyA3_gED2MawMfwPlSN4CCNS032eTdXmtao",
+        authDomain: "project-5737053587009917687.firebaseapp.com",
+        databaseURL: "https://project-5737053587009917687.firebaseio.com",
+        storageBucket: "project-5737053587009917687.appspot.com",
+      };
+
+      var app = firebase.initializeApp(config);
+      var auth = app.auth();
+
+      initApp = function() {
+        auth.onAuthStateChanged(function(user) {
+          if (user) {
+            window.location.replace("index.html");
+          } else {
+            var uiConfig = {
+              'signInSuccessUrl': 'index.html',
+              'signInOptions': [
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
+              ],
+              'tosUrl': '#',
+            };
+            var ui = new firebaseui.auth.AuthUI(auth);
+            ui.start('#firebaseui-auth-container', uiConfig);
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      };
+
+      window.onload = function() {
+        initApp()
+      };
+
+    </script>
+
+
+
+  </head>
+
+  <body style="padding: 70px;">
+
+    <nav class="navbar navbar-default center-block navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            Atlas
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Maps<span class="sr-only">(current)</span></a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li><a href="#">List View</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#">Sign In</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+         Your app may use that space for branding, controls and other customizations.-->
+    <div id="firebaseui-auth-container"></div>
+  </body>
+</html>

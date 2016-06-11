@@ -9,7 +9,7 @@
       storageBucket: "project-5737053587009917687.appspot.com",
     };
     firebase.initializeApp(config);
-  }
+  });
 
   app.controller("AuthenticationController", ["$scope", "$firebaseAuth", "$firebaseObject", "$window", function($scope, $firebaseAuth, $firebaseObject, $window){
     $scope.authenticated = false;
