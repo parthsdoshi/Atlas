@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/darthyoshi007/baseHacks/issues"
   },
-  "homepage": "https://github.com/darthyoshi007/baseHacks#readme"
+  "homepage": "https://github.com/darthyoshi007/baseHacks#readme",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angularfire": "^2.0.1",
+    "firebase": "^3.0.4"
+  }
 }
