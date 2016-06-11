@@ -1,0 +1,22 @@
+{
+  "name": "basehacks",
+  "version": "0.0.1",
+  "description": "content created at basehacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darthyoshi007/baseHacks.git"
+  },
+  "keywords": [
+    "basehacks"
+  ],
+  "author": "Parth Doshi, Julia Read, Tejas Thobbi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darthyoshi007/baseHacks/issues"
+  },
+  "homepage": "https://github.com/darthyoshi007/baseHacks#readme"
+}
