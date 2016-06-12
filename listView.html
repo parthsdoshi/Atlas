@@ -1,0 +1,100 @@
+<html ng-app="listView" ng-controller="AuthenticationController as authCtrl" ng-init="authCtrl.init()">
+  <head>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
+    <link type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="node_modules/angular/angular.min.js"></script>                 <!-- imports angular 1.5.5 -->
+    <script src="https://www.gstatic.com/firebasejs/3.0.2/firebase.js"></script>
+    <script src="node_modules/angularfire/dist/angularfire.min.js"></script>    <!-- imports angularfire 1.2.0 -->
+    <script src="javascript/listView.js"></script>
+
+    <nav class="navbar navbar-default center-block navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            Atlas
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Map</a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">List View<span class="sr-only">(current)</span></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Signed in as {{email}}
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu" style="width: 100%;">
+                <li><a href="#" ng-click="authCtrl.logout()">Sign Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </head>
+  <body style="padding: 70px;">
+    <div class="panel panel-default center-block" style="width: 90%;">
+      <!-- Default panel contents -->
+      <div class="panel-heading">List View</div>
+
+      <!-- Table -->
+      <table class="table table-bordered table-hover" ng-controller="TableController as tableCtrl">
+        <thead>
+          <tr class="info">
+            <th style="text-align: center;">Like</th>
+            <th style="text-align: center;">Dislike</th>
+            <th>Distance from Loc</th>
+            <th>Author</th>
+            <th>Post Title</th>
+            <th>Input</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="post in posts">
+            <td>
+              <div class="text-center">
+                <button type="button" class="btn btn-m btn-success">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                </button>
+              </div>
+            </td>
+            <td>
+              <div class="text-center">
+                <button type="button" class="btn btn-m btn-danger">
+                  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                </button>
+              </div>
+            </td>
+            <td>
+              {{post.location}}
+            </td>
+            <td>
+              {{post.author}}
+            </td>
+            <td>
+              {{post.title}}
+            </td>
+            <td>
+              {{post.message}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
