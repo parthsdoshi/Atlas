@@ -34,4 +34,8 @@
     }
   }]);
 
+  app.controller("MapController", ["$scope", "$firebaseObject", "$window", function($scope, $firebaseObject, $window){
+    $scope.map;
+  }]);
+
 })();
