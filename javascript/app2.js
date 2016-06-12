@@ -148,6 +148,7 @@
           var bye = {lat:33.812471, lng:-117.91587};
           var hi = {lat:37.4040312, lng:-122.03533759999999};
           var hihi = {lat:37.314821, lng:-122.056725};
+          var bibi = {lat:37.396680, lng:-122.060196};
           var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
             center: hi
@@ -190,8 +191,24 @@
               '</div>'+
               '<h1 id="firstHeading" class="firstHeading">Robotics</h1>'+
               '<div id="bodyContent">'+
-              '<p><b>Description: </b>Monta Vista High is having a robotics tournament tomorrow</p>'+
+              '<p><b>Description: </b>"Monta Vista High is having a robotics tournament tomorrow"</p>'+
               '<p><b>Points: </b> 8</p>'+
+              '</div>'+
+              '<button type="button" class="btn btn-m btn-success">' +
+                '<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">' + '</span>' +
+              '</button>' +
+              '<button type="button" class="btn btn-m btn-danger">' +
+                '<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">' + '</span>' +
+              '</button>' +
+              '</div>';
+
+          var contentString4 = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">7-Eleven</h1>'+
+              '<div id="bodyContent">'+
+              '<p><b>Description: </b>7-Eleven is selling 3 hot dogs for a dollar.</p>'+
+              '<p><b>Points: </b> -8</p>'+
               '</div>'+
               '<button type="button" class="btn btn-m btn-success">' +
                 '<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">' + '</span>' +
@@ -210,6 +227,9 @@
           var infowindow3 = new google.maps.InfoWindow({
             content: contentString3
           });
+          var infowindow4 = new google.maps.InfoWindow({
+            content: contentString4
+          });
 
           var marker = new google.maps.Marker({
             position: bye,
@@ -226,6 +246,11 @@
             map: map,
             title: 'Robotics'
           });
+          var marker4 = new google.maps.Marker({
+            position: bibi,
+            map: map,
+            title: '7-Eleven'
+          });
           marker.addListener('click', function() {
             infowindow.open(map, marker);
           });
@@ -234,6 +259,9 @@
           });
           marker3.addListener('click', function() {
             infowindow3.open(map, marker3);
+          });
+          marker4.addListener('click', function() {
+            infowindow4.open(map, marker4);
           });
         }
 
@@ -280,10 +308,7 @@
     // });
   }]);
 
-  app.controller("ModalController", ["$scope", "$firebaseObject", "$firebaseArray", "$window", function($scope, $firebaseObject, $firebaseArray, $window){
-    $scope.change = function(){
-      $window.location.replace("index2.html");
-    }
+  app.controller("ModalController", ["$scope", "$firebaseObject", "$firebaseArray", function($scope, $firebaseObject, $firebaseArray){
     // $scope.post = function(){
     //   var postTitle = document.getElementById('postTitle').value;
     //   var postDescription = document.getElementById('postDescription').value;

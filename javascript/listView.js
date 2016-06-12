@@ -19,6 +19,19 @@
       $scope.auth.$onAuthStateChanged(
         function(user) {
           if (user) {
+            getLocation();
+            function getLocation(){
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(function(position){
+                    $scope.myLatitude = position.coords.latitude;
+                    $scope.myLongitude = position.coords.longitude;
+                    $scope.myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    console.log(position);
+                  });
+              } else {
+                  console.log("geolocation not supported");
+              }
+            }
             $scope.email = user.email;
             $scope.authenticated = true;
           } else {
@@ -34,14 +47,22 @@
     }
   }]);
 
-  app.controller("TableController", ["$scope", "$firebaseObject", function($scope, $firebaseObject){
+  app.controller("TableController", ["$scope", "$firebaseObject", "$firebaseArray", function($scope, $firebaseObject, $firebaseArray){
     $scope.$watch("authenticated", function(){
-      var ref = firebase.database().ref();
-      var postsRef = ref.child("postsRef");
-      $scope.posts = $firebaseObject(postsRef);
-      $scope.posts.$loaded().then(function(){
-
-      });
+      if ($scope.authenticated){
+        var ref = firebase.database().ref();
+        var postsRef = ref.child("posts");
+        $scope.posts = $firebaseObject(postsRef);
+        // $scope.$watch("myLatlng", function(){
+          $scope.posts.$loaded().then(function(){
+            console.log($scope.posts.length);
+            for (var i = 0; i < $scope.posts.length; i++){
+              $scope.posts[i].distance = google.maps.geometry.computeDistanceBetween($scope.myLatlng, new google.maps.LatLng(posts[i].postLatitude, posts[i].postLongitude));
+              console.log(google.maps.geometry.spherical.computeDistanceBetween($scope.myLatlng, new google.maps.LatLng(posts[i].postLatitude, posts[i].postLongitude)));
+            }
+          });
+        // });
+      }
     });
   }]);
 
